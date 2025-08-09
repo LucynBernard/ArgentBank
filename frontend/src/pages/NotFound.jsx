@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import "../css/main.css";
+import Layout from "../Layout/Layout";
 
 function NotFound() {
   return (
-    <main className="main bg-dark">
+    <Layout>
+    <main>
       <h1>404</h1>
       <h2>
         Oups ! Cette page n'existe pas.
@@ -12,6 +14,7 @@ function NotFound() {
         Retour à l'accueil
       </Link>
     </main>
+    </Layout>
   );
 }
 
