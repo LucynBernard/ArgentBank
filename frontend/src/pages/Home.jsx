@@ -2,7 +2,7 @@ import iconChat from "../assets/icon-chat.png";
 import iconMoney from "../assets/icon-money.png";
 import iconSecurity from "../assets/icon-security.png";
 import Layout from "../Layout/Layout";
-import "../css/main.css";
+import "../css/Home.css";
 
 function Home() {
     return (

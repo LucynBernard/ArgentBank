@@ -1,4 +1,4 @@
-import "../css/main.css";
+import "../css/User.css";
 import Layout from "../Layout/Layout";
 
 function User() {
