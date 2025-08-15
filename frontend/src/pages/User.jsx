@@ -1,15 +1,32 @@
 import "../css/User.css";
 import Layout from "../Layout/Layout";
 import Account from "../components/Account";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../Redux/authSliceTemp";
+import { useNavigate } from "react-router-dom";
 
 function User() {
+    const { user } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/');
+    };
+
 return (
     <>
 <Layout>
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+        <h1>
+            Welcome back
+            <br />
+            {user?.name || "Invité"}!
+            </h1>
         <button className="edit-button">Edit Name</button>
+        <button className="edit-button" onClick={handleLogout}>Log Out</button>
       </div>
 
       <h2 className="sr-only">Accounts</h2>
