@@ -1,33 +1,32 @@
 import "../css/User.css";
 import Layout from "../Layout/Layout";
 import Account from "../components/Account";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../Redux/authSliceTemp";
-import { useNavigate } from "react-router-dom";
+import EditUsernameForm from "../components/EditUsernameForm";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 function User() {
     const { user } = useSelector((state) => state.auth);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        dispatch(logout());
-        navigate('/');
-    };
+    const [ editing, setEditing ] = useState(false);
 
 return (
     <>
 <Layout>
     <main className="main bg-dark">
       <div className="header">
-        <h1>
+        {!editing ? (
+            <>
+             <h1>
             Welcome back
             <br />
-            {user?.name || "Invité"}!
+            {user?.firstName} {user?.lastName} ({user?.userName})
             </h1>
-        <button className="edit-button">Edit Name</button>
-        <button className="edit-button" onClick={handleLogout}>Log Out</button>
-      </div>
+            <button className="edit-button" onClick={() => setEditing(true)}>Edit Name</button>
+            </>
+        ) : (
+            <EditUsernameForm onCancel={() => setEditing(false)} />
+        )}
+        </div>
 
       <h2 className="sr-only">Accounts</h2>
 

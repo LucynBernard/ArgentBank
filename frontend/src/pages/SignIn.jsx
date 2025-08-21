@@ -14,7 +14,7 @@ function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+console.log("hello")
     try {
       const loginResponse = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
@@ -51,7 +51,7 @@ function SignIn() {
 
       dispatch(
         loginSuccess({
-          user: profileData.body, // firstName, lastName, email
+          user: profileData.body,
           token
         })
       );

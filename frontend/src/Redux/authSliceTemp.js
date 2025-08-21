@@ -19,9 +19,12 @@ const initialState = {
             state.user = null;
             state.token = null;
             state.isAuthenticated = false;
+        },
+        updateUsernameSuccess: (state, action) => {
+            state.user.userName = action.payload.userName
         }
     }
  });
 
- export const { loginSuccess, logout } = authSlice.actions;
+ export const { loginSuccess, logout, updateUsernameSuccess } = authSlice.actions;
  export default authSlice.reducer;
