@@ -1,0 +1,135 @@
+swagger: "2.0"
+info:
+  title: ArgentBank API documentation
+  description: Specify all necessary endpoints for ArgentBank project.
+  version: 1.0.0
+  termsOfService: http://swagger.io/terms/
+
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - https
+  
+securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "JWT Authorization header using the Bearer scheme"
+
+paths:
+  /user/transactions:
+    get:
+      summary: List of all transactions
+      description: Return all monthly transactions
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: query
+          name: month
+          required: true
+          type: string
+          description: Month to retrieve (MM/YYYY)
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Month transactions retrieved successfully
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid fields
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /user/transactions/{transactionId}:
+    get:
+      summary: Retrieve transaction
+      description: API for retrieving a specific transaction
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: Transaction ID
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction retrieved successfully
+          schema:
+              $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Transaction not found
+        '500':
+          description: Internal server error
+          
+    patch:
+      summary: Update transaction
+      description: API for updating transaction attributes
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update transaction attributes
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+              note:
+                type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction update successfully
+          schema:
+                $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid fields
+        '401':
+          description: Unauthorized
+        '404':
+          description: Transaction not found
+        '500':
+          description: Internal server error
+          
+definitions:
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      amount:
+        type: number
+        format: float
+      balance:
+        type: number
+        format: float
+      category:
+        type: string
+      note:
+        type: string
