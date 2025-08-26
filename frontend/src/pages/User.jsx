@@ -4,11 +4,15 @@ import Account from "../components/Account";
 import EditUsernameForm from "../components/EditUsernameForm";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 function User() {
     const { user } = useSelector((state) => state.auth);
     const [ editing, setEditing ] = useState(false);
-
+    
+if (!user) {
+    return <Navigate to="/sign-in" />
+}
 return (
     <>
 <Layout>

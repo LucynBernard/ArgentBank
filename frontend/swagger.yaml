@@ -39,8 +39,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Transaction'
-        '400':
-          description: Invalid fields
         '401':
           description: Unauthorized
         '500':
@@ -65,8 +63,6 @@ paths:
           description: Transaction retrieved successfully
           schema:
               $ref: '#/definitions/Transaction'
-        '400':
-          description: Invalid fields
         '401':
           description: Unauthorized
         '404':
@@ -117,6 +113,10 @@ definitions:
     type: object
     properties:
       id:
+        type: string
+      accountId:
+        type: string
+      type:
         type: string
       date:
         type: string

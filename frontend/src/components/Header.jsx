@@ -8,6 +8,7 @@ function Header() {
   const dispatch = useDispatch();
     const navigate = useNavigate();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+     const { user } = useSelector((state) => state.auth);
 
         const handleLogout = () => {
         dispatch(logout());
@@ -27,10 +28,16 @@ function Header() {
 
           <div>
             {isAuthenticated ? (
-               <button className="main-nav-item" onClick={handleLogout}>
+              <>
+              <Link className="main-nav-item" to="/user">
+          {user?.userName}
+          </Link>
+               <a href="#" className="main-nav-item" onClick={handleLogout}>
             <i className="fa fa-sign-out"></i>
             Log Out
-          </button>
+          </a>
+          </>
+               
         ) : (
           <Link className="main-nav-item" to="/sign-in">
             <i className="fa fa-user-circle"></i>
