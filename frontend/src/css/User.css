@@ -19,6 +19,7 @@ body {
 
 .bg-dark {
   background-color: #12002b;
+  height: 850px;
 }
 
 .sr-only {
@@ -83,6 +84,11 @@ body {
 .header {
   color: #fff;
   margin-bottom: 2rem;
+}
+
+h1 {
+  margin-top: 0;
+  padding-top: 2rem;
 }
 
 .transaction-button {

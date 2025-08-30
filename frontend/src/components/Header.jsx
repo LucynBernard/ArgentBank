@@ -10,7 +10,8 @@ function Header() {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
      const { user } = useSelector((state) => state.auth);
 
-        const handleLogout = () => {
+        const handleLogout = (e) => {
+    e.preventDefault();
         dispatch(logout());
         navigate('/');
     };
