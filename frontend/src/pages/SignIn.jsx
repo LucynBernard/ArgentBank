@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../Redux/authSliceTemp";
+import { loginSuccess } from "../Redux/userSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";

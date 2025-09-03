@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUsernameSuccess } from "../Redux/authSliceTemp";
+import { updateUsernameSuccess } from "../Redux/userSlice";
 
 function EditUsernameForm({ onCancel}) {
     const dispatch = useDispatch();
